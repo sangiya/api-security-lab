@@ -1,0 +1,11 @@
+app:
+  jwt:
+    secret: "test-secret-that-is-long-enough-for-hs256-hmac-signing-algorithm-0123456789"
+    access-token-expiry-ms: 900000
+    issuer: api-security-lab
+  ratelimit:
+    # High ceiling during tests so integration tests that log in repeatedly
+    # are not throttled. Rate-limit behaviour itself is covered by RateLimitFilterTest.
+    max-requests: 100000
+    window-ms: 60000
+    protected-paths: "/api/auth/login,/api/auth/token"

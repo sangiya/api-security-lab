@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  error:
+    include-message: never
+
+spring:
+  application:
+    name: api-security-lab
+
+app:
+  jwt:
+    # HMAC-SHA256 secret (>= 32 bytes for HS256). Replace in production via env.
+    secret: "change-me-please-use-a-256-bit-secret-in-real-environments-0123456789abcdef"
+    # Access token expiry in milliseconds (15 minutes)
+    access-token-expiry-ms: 900000
+    issuer: api-security-lab
+
+  ratelimit:
+    # Fixed-window rate limiting, per client IP
+    max-requests: 10
+    window-ms: 60000
+    # Paths subject to rate limiting (comma separated)
+    protected-paths: "/api/auth/login,/api/auth/token"
